@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const education = [
+  {
+    degree: "MS in Computer Science",
+    university: "Columbia University",
+    period: "Dec 2025",
+    details: "GPA: 3.88/4.0. Courses: Distributed Systems, High Performance Machine Learning, Natural Language Processing, Agents for Work.",
+    icon: '/icons/columbia.png'
+  },
+  {
+    degree: "BS in Computer Science",
+    university: "National Taiwan University",
+    period: "Jan 2021",
+    details: "GPA: 4.13/4.3. Courses: Data Structures, Computer Networks, Compiler Design, Operating Systems, Machine Learning.",
+    icon: '/icons/ntu.png'
+  }
+];
+
+const experience = [
+  {
+    role: "Teaching Assistant",
+    company: "Columbia University",
+    period: "Fall 2024 - Fall 2025",
+    description: [
+      "TA for Distributed Systems & Advanced Software Engineering.",
+      "Led office hours and code reviews for 100+ students, covering topics like distributed consensus (Paxos) and software engineering concepts."
+    ],
+    icon: '/icons/columbia.png'
+  },
+  {
+    role: "Software Engineer",
+    company: "Trend Micro",
+    period: "Aug 2022 - May 2024",
+    description: [
+      "Designed RESTful APIs for a SOC platform, orchestrated TB-scale ETL pipelines with Airflow, and launched a network attack detection feature.",
+      "Reduced Azure cloud costs by 50% and saved over 40% of service spin-up time."
+    ],
+    icon: '/icons/trendmicro.png'
+  },
+  {
+    role: "Software Engineer",
+    company: "Micron",
+    period: "Jun 2022 - Aug 2022",
+    description: [
+      "Optimized C++ probe data applications, which reduced runtime and saved $6M annually in operational costs."
+    ],
+    icon: '/icons/micron.png'
+  }
+];
+
+const skills = {
+    "AI & ML": ["PyTorch", "LLMs", "CUDA", "LoRA/QLoRA", "RAG", "Hugging face", "OpenAI API"],
+    "Data Engineering": ["Airflow", "Apache Spark", "Azure Data Explorer", "Kafka"],
+    "Backend & Monitoring": ["Spring Boot", "OpenAPI", "Redis", "PostgreSQL", "Prometheus", "Grafana"],
+    "Cloud & Orchestration": ["Azure/GCP/AWS", "Terraform", "Docker", "Kubernetes", "Helm Charts"],
+    "Languages & Dev tools": ["Python", "Java", "Go", "C/C++", "JavaScript", "SQL", "Linux", "CI/CD (GitHub Actions)"]
+};
+---
+
+<Layout title="Robin Liu | Resume">
+	<div class="max-w-3xl mx-auto">
+		<h1 class="text-3xl font-bold mb-10">Resume</h1>
+
+		<h2 class="text-2xl font-bold mb-8">Education</h2>
+		<div class="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-12 mb-16">
+			{education.map((item) => (
+				<div class="relative pl-12">
+					<div class="absolute -left-7 -top-4 w-14 h-14 rounded-full flex items-center justify-center bg-white ring-4 ring-white dark:ring-slate-950 overflow-hidden">
+						<img src={item.icon} alt={`${item.university} logo`} class="w-full h-full object-cover" />
+					</div>
+					<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+						<h3 class="text-xl font-bold text-slate-900 dark:text-white">{item.university}</h3>
+						<span class="text-sm font-mono text-slate-500">{item.period}</span>
+					</div>
+					<div class="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">{item.degree}</div>
+					<p class="text-slate-600 dark:text-slate-400 leading-relaxed">{item.details}</p>
+				</div>
+			))}
+		</div>
+		
+		<h2 class="text-2xl font-bold mb-8">Experience</h2>
+		<div class="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-12 mb-16">
+			{experience.map((item) => (
+				<div class="relative pl-12">
+					<div class="absolute -left-7 -top-4 w-14 h-14 rounded-full flex items-center justify-center bg-white ring-4 ring-white dark:ring-slate-950 overflow-hidden">
+						<img
+							src={item.icon}
+							alt={`${item.company} logo`}
+							class:list={[
+								"w-full h-full",
+								(item.company === 'Trend Micro' || item.company === 'Micron') ? 'object-contain p-1' : 'object-cover'
+							]} />
+					</div>
+					<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+						<h3 class="text-xl font-bold text-slate-900 dark:text-white">{item.company}</h3>
+						<span class="text-sm font-mono text-slate-500">{item.period}</span>
+					</div>
+					<div class="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">{item.role}</div>
+					<ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-400">
+						{item.description.map((point) => (
+							<li>{point}</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+
+        <div class="mt-16 pt-8 border-t border-slate-100 dark:border-slate-800">
+            <h2 class="text-2xl font-bold mb-8">Skills</h2>
+            <div class="space-y-4">
+                {Object.entries(skills).map(([category, techList]) => (
+                    <div class="grid grid-cols-[180px_1fr] items-start gap-x-4">
+                        <h3 class="font-semibold text-slate-800 dark:text-slate-200 text-right pt-1">{category}</h3>
+                        <div class="flex flex-wrap gap-1.5">
+                            {techList.map((tech) => (
+                                <span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs rounded-md border border-slate-200 dark:border-slate-800">
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+	</div>
+</Layout>
