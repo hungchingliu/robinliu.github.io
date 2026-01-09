@@ -50,13 +50,6 @@ const experience = [
   }
 ];
 
-const skills = {
-    "AI & ML": ["PyTorch", "LLMs", "CUDA", "LoRA/QLoRA", "RAG", "Hugging face", "OpenAI API"],
-    "Data Engineering": ["Airflow", "Apache Spark", "Azure Data Explorer", "Kafka"],
-    "Backend & Monitoring": ["Spring Boot", "OpenAPI", "Redis", "PostgreSQL", "Prometheus", "Grafana"],
-    "Cloud & Orchestration": ["Azure/GCP/AWS", "Terraform", "Docker", "Kubernetes", "Helm Charts"],
-    "Languages & Dev tools": ["Python", "Java", "Go", "C/C++", "JavaScript", "SQL", "Linux", "CI/CD (GitHub Actions)"]
-};
 ---
 
 <Layout title="Robin Liu | Experience">
@@ -109,23 +102,6 @@ const skills = {
 			))}
 		</div>
 
-        <div class="mt-16 pt-8 border-t border-slate-100 dark:border-slate-800">
-            <h2 class="text-2xl font-bold mb-8">Skills</h2>
-            <div class="space-y-4">
-                {Object.entries(skills).map(([category, techList]) => (
-                    <div class="grid grid-cols-[180px_1fr] items-start gap-x-4">
-                        <h3 class="font-semibold text-slate-800 dark:text-slate-200 text-right pt-1">{category}</h3>
-                        <div class="flex flex-wrap gap-1.5">
-                            {techList.map((tech) => (
-                                <span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs rounded-md border border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
 	</div>
 </Layout>
 
