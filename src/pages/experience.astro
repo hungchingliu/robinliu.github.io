@@ -59,23 +59,23 @@ const skills = {
 };
 ---
 
-<Layout title="Robin Liu | Resume">
+<Layout title="Robin Liu | Experience">
 	<div class="max-w-3xl mx-auto">
-		<h1 class="text-3xl font-bold mb-10">Resume</h1>
-
 		<h2 class="text-2xl font-bold mb-8">Education</h2>
 		<div class="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-12 mb-16">
 			{education.map((item) => (
-				<div class="timeline-item relative p-4 pl-12 rounded-lg transition-all duration-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:z-10">
-					<div class="absolute -left-7 -top-4 w-14 h-14 rounded-full flex items-center justify-center bg-white ring-4 ring-white dark:ring-slate-950 overflow-hidden">
+				<div class="timeline-item group relative">
+					<div class="absolute -left-7 top-[0.125rem] w-14 h-14 rounded-full flex items-center justify-center bg-white ring-1 ring-black/10 dark:ring-white/10 overflow-hidden transition-transform duration-300 group-hover:scale-110 z-10">
 						<img src={item.icon} alt={`${item.university} logo`} class="w-full h-full object-cover" />
 					</div>
-					<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-						<h3 class="text-xl font-bold text-slate-900 dark:text-white">{item.university}</h3>
-						<span class="text-sm font-mono text-slate-500">{item.period}</span>
+					<div class="p-4 pl-12 rounded-lg transition-all duration-300 group-hover:bg-slate-50 dark:group-hover:bg-slate-900 group-hover:shadow-xl group-hover:scale-[1.02]">
+						<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+							<h3 class="text-xl font-bold text-slate-900 dark:text-white">{item.university}</h3>
+							<span class="text-sm font-mono text-slate-500">{item.period}</span>
+						</div>
+						<div class="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">{item.degree}</div>
+						<p class="text-slate-600 dark:text-slate-400 leading-relaxed">{item.details}</p>
 					</div>
-					<div class="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">{item.degree}</div>
-					<p class="text-slate-600 dark:text-slate-400 leading-relaxed">{item.details}</p>
 				</div>
 			))}
 		</div>
@@ -83,8 +83,8 @@ const skills = {
 		<h2 class="text-2xl font-bold mb-8">Experience</h2>
 		<div class="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-12 mb-16">
 			{experience.map((item) => (
-				<div class="timeline-item relative p-4 pl-12 rounded-lg transition-all duration-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:z-10">
-					<div class="absolute -left-7 -top-4 w-14 h-14 rounded-full flex items-center justify-center bg-white ring-4 ring-white dark:ring-slate-950 overflow-hidden">
+				<div class="timeline-item group relative">
+					<div class="absolute -left-7 top-[0.125rem] w-14 h-14 rounded-full flex items-center justify-center bg-white ring-1 ring-black/10 dark:ring-white/10 overflow-hidden transition-transform duration-300 group-hover:scale-110 z-10">
 						<img
 							src={item.icon}
 							alt={`${item.company} logo`}
@@ -93,16 +93,18 @@ const skills = {
 								(item.company === 'Trend Micro' || item.company === 'Micron') ? 'object-contain p-1' : 'object-cover'
 							]} />
 					</div>
-					<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-						<h3 class="text-xl font-bold text-slate-900 dark:text-white">{item.company}</h3>
-						<span class="text-sm font-mono text-slate-500">{item.period}</span>
+					<div class="p-4 pl-12 rounded-lg transition-all duration-300 group-hover:bg-slate-50 dark:group-hover:bg-slate-900 group-hover:shadow-xl group-hover:scale-[1.02]">
+						<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+							<h3 class="text-xl font-bold text-slate-900 dark:text-white">{item.company}</h3>
+							<span class="text-sm font-mono text-slate-500">{item.period}</span>
+						</div>
+						<div class="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">{item.role}</div>
+						<ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-400">
+							{item.description.map((point) => (
+								<li>{point}</li>
+							))}
+						</ul>
 					</div>
-					<div class="text-lg font-medium text-slate-700 dark:text-slate-200 mb-2">{item.role}</div>
-					<ul class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-400">
-						{item.description.map((point) => (
-							<li>{point}</li>
-						))}
-					</ul>
 				</div>
 			))}
 		</div>
@@ -130,8 +132,8 @@ const skills = {
 <style>
 	.timeline-item {
 		opacity: 0;
-		transform: translateY(30px);
-		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+		transform: translateY(20px);
+		transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 	}
 
 	.timeline-item.is-visible {
