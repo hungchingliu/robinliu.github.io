@@ -3,18 +3,36 @@ import Layout from '../layouts/Layout.astro';
 
 const projects = [
   {
-    title: "Text-to-SQL Self Correction",
-    description: "An RL-based loop to improve LLM accuracy in generating SQL queries. Implemented using LoRA fine-tuning.",
-    tags: ["Python", "LLMs", "Reinforcement Learning"],
-    youtubeId: "dQw4w9WgXcQ", // REPLACE THIS with actual Video ID
-    link: "https://github.com/hcliu-robin"
+    title: "ReflectSQL: Training a Self-Correction Agent for Robust Text-to-SQL Generation",
+    description: "Fine-tuned an open-source LLM on the Spider dataset using LoRA to generate complex SQL queries. Implemented a Reinforcement Learning (RL) feedback loop for self-correction based on syntax errors, improving execution accuracy from 17% to 79%.",
+    tags: ["Python", "PyTorch", "LLMs", "Agents", "Reinforcement Learning", "LoRA", "SQL"],
+    github: "https://github.com/hungchingliu/coms4705-tinker-rl",
+    report: "https://drive.google.com/file/d/1lyvw-e1hUK3s8A3CUomruzlIlmeYs8nT/view?usp=sharing",
   },
   {
-    title: "Distributed Ray Scheduler",
-    description: "Custom task scheduler built on top of Ray Core to optimize resource allocation for ML training jobs.",
-    tags: ["Ray", "Python", "Distributed Systems"],
-    // No video for this one, so we conditionally render
-    link: "https://github.com/hcliu-robin"
+    title: "CiteScope: Generative Engine Optimization (GEO) Analytics Platform",
+    description: "Developed a SaaS application to audit and track brand visibility within Generative AI engines like ChatGPT and Gemini. Engineered a persona-based simulation pipeline to generate diverse, intent-specific user queries to model real-world search behavior.",
+    tags: ["SaaS", "AI Search Engine Optimization", "Persona",  "Flask", "OpenAI API"],
+    link: "http://citescope.shop/"
+  },
+  {
+    title: "AirRacket",
+    description: "A custom haptic controller that creates immersive racket sport experiences by using an air-jet for reaction force and a weight-shifting stick to render a variety of rich sensations, overcoming the limitations of traditional vibration feedback.",
+    tags: ["Vitual Reality", "Human Computer Interaction", "Haptic Feedback", "Robotics", "Fabrication", "User study"],
+    youtubeId: "sNARxVQzyog"
+  },
+  {
+    title: "Human-Machine Mutual Actuation Robot Arm",
+    description: "A proof-of-concept prototype demonstrating the feasibility of Human-Machine Mutual Actuation (HMMA) by combining human actuation with machine control. This project features a robotic arm that calculates and corrects a ball's trajectory during a throw, expanding the machine's degrees of freedom and introducing the 'HMMA spectrum' to analyze human-machine cooperation.",
+    tags: ["Mixed Reality", "Robotics", "Simulation", "Mutual Actuation"],
+    report: "https://drive.google.com/file/d/1wvqMCdnKc4G8hqPGjKfz1Zf9wIsGje6H/",
+    youtubeId: "-jf5LUb0hws"
+  },
+  {
+    title: "What are you listening to? (Present in Mandarin Chinese)",
+    description: "A web application that uses the Spotify API to share real-time listening activity and create social music experiences.",
+    tags: ["Web App", "Node.js", "MongoDB", "React", "SpotifyAPI", "GoogleMapsAPI"],
+    youtubeId: "YoKiFccb97M"
   }
 ];
 ---
@@ -24,7 +42,7 @@ const projects = [
 
 	<div class="grid grid-cols-1 gap-12">
 		{projects.map((project) => (
-			<article class="flex flex-col border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow bg-white dark:bg-slate-900">
+			<article class="flex flex-col border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-lg hover:scale-[1.02] transition-all duration-300 bg-white dark:bg-slate-900">
 				
 				{project.youtubeId && (
 					<div class="aspect-video w-full bg-black">
@@ -41,26 +59,44 @@ const projects = [
 
 				<div class="p-8">
 					<div class="flex justify-between items-start mb-4">
-						<h2 class="text-2xl font-bold text-slate-900 dark:text-white">
-							<a href={project.link} target="_blank" class="hover:underline decoration-blue-600 underline-offset-4">
-								{project.title}
-							</a>
+						<h2 class="text-2xl font-bold text-slate-900 dark:text-white flex-1">
+							{project.link && project.link !== '#' ? (
+								<a href={project.link} target="_blank" class="hover:underline decoration-blue-600 underline-offset-4">
+									{project.title}
+								</a>
+							) : project.title}
 						</h2>
-                        <a href={project.link} target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
-							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-						</a>
+						{project.link && project.link !== '#' && (
+							<a href={project.link} target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white ml-4 shrink-0">
+								<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
+							</a>
+						)}
 					</div>
 
-					<p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+					<p class="text-slate-600 dark:text-slate-300 leading-relaxed">
 						{project.description}
 					</p>
 
-					<div class="flex flex-wrap gap-2">
-						{project.tags.map((tag) => (
-							<span class="px-2.5 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-semibold rounded-full">
-								{tag}
-							</span>
-						))}
+					<div class="mt-6 flex items-center justify-between">
+						<div class="flex flex-wrap gap-2">
+							{project.tags.map((tag) => (
+								<span class="px-2.5 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-semibold rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+									{tag}
+								</span>
+							))}
+						</div>
+						<div class="flex items-center gap-4 shrink-0 ml-4">
+							{project.report && project.report !== '#' && (
+								<a href={project.report} target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+									<svg class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" /></svg>
+								</a>
+							)}
+							{project.github && (
+								<a href={project.github} target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white">
+									<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+								</a>
+							)}
+						</div>
 					</div>
 				</div>
 			</article>
